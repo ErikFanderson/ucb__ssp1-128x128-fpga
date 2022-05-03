@@ -1,0 +1,15 @@
+[submodule "toolbox"]
+	path = toolbox
+	url = git@github.com:ErikFanderson/toolbox.git
+[submodule "toolbox-xilinx-tools"]
+	path = toolbox-xilinx-tools
+	url = git@github.com:ErikFanderson/toolbox-xilinx-tools.git
+[submodule "toolbox-buildfile-tools"]
+	path = toolbox-buildfile-tools
+	url = git@github.com:ErikFanderson/toolbox-buildfile-tools.git
+[submodule "mems_switch_control"]
+	path = mems_switch_control
+	url = git@github.com:ErikFanderson/mems_switch_control.git
+[submodule "equipment"]
+	path = equipment
+	url = git@github.com:ErikFanderson/equipment.git
