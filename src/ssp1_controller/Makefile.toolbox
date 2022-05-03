@@ -1,0 +1,101 @@
+#----------------------------------------------------------
+# Target "list" - lists all found jobs
+#----------------------------------------------------------
+list:
+	@echo "#--------------------------------------------------------------------"
+	@echo "# Toolbox generated make targets"
+	@echo "#--------------------------------------------------------------------"
+	@echo "build             Generates a Makefile w/ all jobs as targets"
+	@echo "implement         Implement design and generate bitstream for FPGA"
+	@echo "upload            Upload design to FPGA"
+	@echo "sim               Simulate fpga design w/ simple test"
+	@echo "waves             Open simvision"
+	@echo "clean             Cleans directory"
+	@echo "implement-bsub    [bsub] Implement design and generate bitstream for FPGA"
+	@echo "upload-bsub       [bsub] Upload design to FPGA"
+	@echo "sim-bsub          [bsub] Simulate fpga design w/ simple test"
+	@echo "waves-bsub        [bsub] Open simvision"
+	@echo "#--------------------------------------------------------------------"
+.PHONY: list 
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "build" 
+#----------------------------------------------------------
+build: 
+	toolbox-cli --color -l info -b build -o toolbox build	
+.PHONY: build
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "implement" 
+#----------------------------------------------------------
+implement: 
+	toolbox-cli --color -l info -b build -o toolbox implement	
+.PHONY: implement
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "upload" 
+#----------------------------------------------------------
+upload: 
+	toolbox-cli --color -l info -b build -o toolbox upload	
+.PHONY: upload
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "sim" 
+#----------------------------------------------------------
+sim: 
+	toolbox-cli --color -l info -b build -o toolbox sim	
+.PHONY: sim
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "waves" 
+#----------------------------------------------------------
+waves: 
+	toolbox-cli --color -l info -b build -o toolbox waves	
+.PHONY: waves
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# Target "clean" 
+#----------------------------------------------------------
+clean: 
+	rm -rf build *.jou *.log __pycache__	
+.PHONY: clean
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# BSUB Target "implement-bsub" 
+#----------------------------------------------------------
+implement-bsub: 
+	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox implement"
+.PHONY: implement-bsub
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# BSUB Target "upload-bsub" 
+#----------------------------------------------------------
+upload-bsub: 
+	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox upload"
+.PHONY: upload-bsub
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# BSUB Target "sim-bsub" 
+#----------------------------------------------------------
+sim-bsub: 
+	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox sim"
+.PHONY: sim-bsub
+#----------------------------------------------------------
+
+#----------------------------------------------------------
+# BSUB Target "waves-bsub" 
+#----------------------------------------------------------
+waves-bsub: 
+	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox waves"
+.PHONY: waves-bsub
+#----------------------------------------------------------
+

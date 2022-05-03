@@ -1,0 +1,56 @@
+# Set target part for vivado (using vc707 evaluation board)
+implement.part: "xc7vx485tffg1761-2"
+implement.execute: true 
+implement.verilog_version: "sv"
+
+# Set the units for all variables
+implement.units.time: "ns"
+implement.units.capacitance: "pF"
+implement.units.current: "mA"
+implement.units.voltage: "V"
+implement.units.power: "mW"
+implement.units.resistance: "ohm"
+implement.units.altitude: "meters"
+
+# Set top level module
+implement.top: "ssp1_controller_wrapper"
+
+# Files
+implement.verilog:
+- "src/rtl/ssp1_controller_uart_defines.v"
+- "src/rtl/ssp1_controller_wrapper.v"
+- "src/rtl/ssp1_controller.v"
+- "src/rtl/ssp1_controller_uart.v"
+- "src/rtl/ssp1_controller_uart_mem_map.v"
+- "../superswitch_driver.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/scan_controller_single.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/scan_clk_gen.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/WriteSegment.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/timer.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/pulse_generator.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/clock_gate.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/reset_sync.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/led_blink.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_tx.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_rx.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_mem_access.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/fifo/synchronizer.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/fifo/sync_fifo.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/fifo/fifo_memory.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/flex_clk_div.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/req_async_handshake.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/ack_async_handshake.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/i2c/i2c_master_async.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/i2c/i2c_master.v"
+implement.vhdl: []
+implement.xdc: []
+implement.post_synthesis_xdc: []
+  #- "src/tcl/post_synth.xdc"
+implement.include_dirs:
+- "src/rtl/parameters/user_sys_design"
+
+implement.config:
+  mode: "B_SCAN"
+  bank_voltage_select: "GND"
+  voltage: 1.8 

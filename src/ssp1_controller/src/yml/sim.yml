@@ -1,0 +1,87 @@
+#-------------------------------------------------------------------------------
+# Dir setup
+#-------------------------------------------------------------------------------
+dirs.block_dir: "${internal.env.SSP1_FPGA_HOME}/src/ssp1_controller"
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Xcelium config
+#-------------------------------------------------------------------------------
+xcelium.options: 
+- "-64bit"
+- "-uvm"
+- "-sv"
+- "-define NCVLOG"
+- "-access"
+- "+rwc"
+- "-seed 5"
+- "-define CSVDATA"
+- '-define "EXPERIMENT=\"default.svh\""'
+  #- "-disable_sem2009"
+  #- "-parseinfo ifxdef"
+  #- "-gui"
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Common simulation setup
+#-------------------------------------------------------------------------------
+xcelium.testbench: "top"
+
+xcelium.defines:
+- "${dirs.block_dir}/src/rtl/ssp1_controller_uart_defines.v"
+xcelium.packages: []
+xcelium.rtl:
+- "${dirs.block_dir}/src/rtl/ssp1_controller.v"
+- "${dirs.block_dir}/src/rtl/ssp1_controller_uart.v"
+- "${dirs.block_dir}/src/rtl/ssp1_controller_uart_mem_map.v"
+- "${internal.env.SSP1_FPGA_HOME}/src/superswitch_driver.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/scan_controller_single.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/scan_clk_gen.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/scan/WriteSegment.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/ack_async_handshake.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/req_async_handshake.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/timer.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/flex_clk_div.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/pulse_generator.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/clock_gate.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/reset_sync.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/misc/led_blink.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_tx.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_rx.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/uart/uart_mem_access.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/fifo/synchronizer.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/i2c/i2c_master.v"
+- "${internal.env.SSP1_FPGA_HOME}/verilog-library/src/i2c/i2c_master_async.v"
+xcelium.test:
+- "${dirs.block_dir}/src/test/top.sv"
+- "${dirs.block_dir}/src/test/ssp1_controller_bfm.sv"
+- "${internal.env.SSP1_FPGA_HOME}/mems_switch_control/generated/MemsSwitchController.v"
+- "${internal.env.SSP1_FPGA_HOME}/mems_switch_control/generated/LatchBlackBox.v"
+- "${internal.env.SSP1_FPGA_HOME}/mems_switch_control/generated/ResetLatchBlackBox.v"
+- "${internal.env.SSP1_FPGA_HOME}/src/MemsDriver.v"
+xcelium.include_dirs: 
+- "${dirs.block_dir}/src/test/includes"
+- "${dirs.block_dir}/src/test/experiments"
+
+xcelium.bin: "xrun"
+xcelium.probe: "shm_w_memories"
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# Simvision
+#-------------------------------------------------------------------------------
+simvision.waves: "build/sim/current/xcelium.shm/xcelium.trn"
+simvision.signals: 
+- "top.dut.i_sys_clk" 
+- "top.dut.i_user_clk" 
+- "top.dut.i_rst" 
+- "top.dut.o_scan_clk_p" 
+- "top.dut.o_scan_clk_n" 
+- "top.dut.o_scan_reset" 
+- "top.mems_output" 
+- "top.genblk1.0.chip.msc_raw.myAddress" 
+- "top.genblk1.1.chip.msc_raw.myAddress" 
+- "top.genblk1.2.chip.msc_raw.myAddress" 
+- "top.genblk1.3.chip.msc_raw.myAddress" 
+#-------------------------------------------------------------------------------

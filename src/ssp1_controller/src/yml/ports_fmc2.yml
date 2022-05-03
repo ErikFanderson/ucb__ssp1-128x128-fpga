@@ -1,0 +1,278 @@
+implement.ports:
+# Primary clocks
+- name: "i_sys_clk_p"
+  package_pin: "E19" # SYSCLK_P 
+  iostandard: "LVDS"
+- name: "i_sys_clk_n"
+  package_pin: "E18" # SYSCLK_N 
+  iostandard: "LVDS"
+- name: "i_user_clk_p"
+  package_pin: "AK34" # USER_CLOCK_P
+  iostandard: "LVDS"
+- name: "i_user_clk_n"
+  package_pin: "AL34" # USER_CLOCK_N
+  iostandard: "LVDS"
+- name: "i_rst"
+  package_pin: "AV39" # GPIO_SW_C 
+  iostandard: "LVCMOS18"
+
+# Misc pins
+- name: "o_shifter_oe_n"
+  package_pin: "V35" # FMC H31 (LA28_P) 
+  iostandard: "LVCMOS18"
+- name: "o_led[0]"
+  package_pin: "AM39" # GPIO_LED_0
+  iostandard: "LVCMOS18"
+- name: "o_led[1]"
+  package_pin: "AN39" # GPIO_LED_1
+  iostandard: "LVCMOS18"
+- name: "o_led[2]"
+  package_pin: "AR37" # GPIO_LED_2
+  iostandard: "LVCMOS18"
+- name: "o_led[3]"
+  package_pin: "AT37" # GPIO_LED_3
+  iostandard: "LVCMOS18"
+- name: "o_led[4]"
+  package_pin: "AR35" # GPIO_LED_4
+  iostandard: "LVCMOS18"
+- name: "o_led[5]"
+  package_pin: "AP41" # GPIO_LED_5
+  iostandard: "LVCMOS18"
+- name: "o_led[6]"
+  package_pin: "AP42" # GPIO_LED_6
+  iostandard: "LVCMOS18"
+- name: "o_led[7]"
+  package_pin: "AU39" # GPIO_LED_7
+  iostandard: "LVCMOS18"
+
+# UART pins
+- name: "o_uart_tx"
+  package_pin: "AU36" # USB_RX (i.e. UART_TX)
+  iostandard: "LVCMOS18"
+- name: "i_uart_rx"
+  package_pin: "AU33" # USB_TX (i.e. UART_RX)
+  iostandard: "LVCMOS18"
+- name: "o_uart_rts_n"
+  package_pin: "AR34" # USB_CTS (i.e. UART_RTS)
+  iostandard: "LVCMOS18"
+- name: "i_uart_cts_n"
+  package_pin: "AT32" # USB_RTS (i.e. UART_CTS)
+  iostandard: "LVCMOS18"
+
+# INPUT SCAN SIGNALS 
+- name: "o_scan_clk_p[0]"
+  package_pin: "AF42" # FMC D11 (LA05_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_p[1]"
+  package_pin: "AE30" # FMC E10 (HA09_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_p[2]"
+  package_pin: "R32" # FMC H35 (LA30_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_p[3]"
+  package_pin: "AL17" # FMC F38 (HB20_N)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_clk_n[0]"
+  package_pin: "AE38" # FMC C11 (LA06_N) 
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_n[1]"
+  package_pin: "AD38" # FMC C10 (LA06_P) 
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_n[2]"
+  package_pin: "AR17" # FMC F35 (HB16_N) 
+  iostandard: "LVCMOS18"
+- name: "o_scan_clk_n[3]"
+  package_pin: "P38" # FMC H38 (LA32_N)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_reset[0]"
+  package_pin: "AD31" # FMC J10 (HA07_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_reset[1]"
+  package_pin: "AJ42" # FMC G9 (LA03_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_reset[2]"
+  package_pin: "T36" # FMC G36 (LA33_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_reset[3]"
+  package_pin: "AN18" # FMC E37 (HB21_N)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_update[0]"
+  package_pin: "AB31" # FMC K10 (HA06_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_update[1]"
+  package_pin: "AC31" # FMC J9 (HA07_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_update[2]"
+  package_pin: "AJ18" # FMC J36 (HB18_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_update[3]"
+  package_pin: "AW17" # FMC K38 (HB17_N_CC)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_en_inst[0]"
+  package_pin: "AA31" # FMC F10 (HA08_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_inst[1]"
+  package_pin: "AD30" # FMC K8 (HA02_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_inst[2]"
+  package_pin: "AJ17" # FMC J37 (HB18_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_inst[3]"
+  package_pin: "P37" # FMC H37 (LA32_P)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_in_inst[0][0]"
+  package_pin: "AL39" # FMC H8 (LA02_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][1]"
+  package_pin: "AC29" # FMC F8 (HA04_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][2]"
+  package_pin: "AF41" # FMC D8 (LA01_P_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][3]"
+  package_pin: "AC30" # FMC K7 (HA02_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][4]"
+  package_pin: "AA30" # FMC J7 (HA03_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][5]"
+  package_pin: "AK39" # FMC H7 (LA02_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][6]"
+  package_pin: "AD41" # FMC G7 (LA00_N_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[0][7]"
+  package_pin: "AB29" # FMC F7 (HA04_P)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_in_inst[1][0]"
+  package_pin: "Y33" # FMC E7 (HA05_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][1]"
+  package_pin: "AA29" # FMC J6 (HA03_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][2]"
+  package_pin: "AD40" # FMC G6 (LA00_P_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][3]"
+  package_pin: "Y32" # FMC E6 (HA05_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][4]"
+  package_pin: "AB33" # FMC F4 (HA00_P_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][5]"
+  package_pin: "AC33" # FMC F5 (HA00_N_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][6]"
+  package_pin: "AD33" # FMC E3 (HA01_N_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[1][7]"
+  package_pin: "AD32" # FMC E2 (HA01_P_CC)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_in_inst[2][0]"
+  package_pin: "V39" # FMC G33 (LA31_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][1]"
+  package_pin: "AL19" # FMC J33 (HB15_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][2]"
+  package_pin: "AV19" # FMC F32 (HB12_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][3]"
+  package_pin: "V36" # FMC H32 (LA28_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][4]"
+  package_pin: "AR19" # FMC K32 (HB10_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][5]"
+  package_pin: "AT19" # FMC E31 (HB13_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][6]"
+  package_pin: "AU19" # FMC F31 (HB12_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[2][7]"
+  package_pin: "W37" # FMC G31 (LA29_N)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_in_inst[3][0]"
+  package_pin: "AP18" # FMC E33 (HB19_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][1]"
+  package_pin: "AK19" # FMC K34 (HB14_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][2]"
+  package_pin: "AM19" # FMC J34 (HB15_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][3]"
+  package_pin: "T32" # FMC H34 (LA30_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][4]"
+  package_pin: "V40" # FMC G34 (LA31_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][5]"
+  package_pin: "AR18" # FMC F34 (HB16_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][6]"
+  package_pin: "AP17" # FMC E34 (HB19_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_inst[3][7]"
+  package_pin: "AK18" # FMC K35 (HB14_N)
+  iostandard: "LVCMOS18"
+
+# ADDRESS SCAN SIGNALS
+- name: "o_scan_in_address[0]"
+  package_pin: "AK42" # FMC G10 (LA03_N)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_address[1]"
+  package_pin: "AG41" # FMC D9 (LA01_N_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_address[2]"
+  package_pin: "AW18" # FMC K37 (HB17_P_CC)
+  iostandard: "LVCMOS18"
+- name: "o_scan_in_address[3]"
+  package_pin: "R37" # FMC G37 (LA33_N)
+  iostandard: "LVCMOS18"
+
+- name: "o_scan_en_address[0]"
+  package_pin: "AL41" # FMC H10 (LA04_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_address[1]"
+  package_pin: "AE29" # FMC E9 (HA09_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_address[2]"
+  package_pin: "AN19" # FMC E36 (HB21_P)
+  iostandard: "LVCMOS18"
+- name: "o_scan_en_address[3]"
+  package_pin: "AK17" # FMC F37 (HB20_P)
+  iostandard: "LVCMOS18"
+
+# Loopback SIGNALS
+- name: "i_scan_out_loopback[0]"
+  package_pin: "AA32" # FMC F11 (HA08_N)
+  iostandard: "LVCMOS18"
+- name: "i_scan_out_loopback[1]"
+  package_pin: "AL42" # FMC H11 (LA04_N)
+  iostandard: "LVCMOS18"
+- name: "i_scan_out_loopback[2]"
+  package_pin: "AB32" # FMC K11 (HA06_N)
+  iostandard: "LVCMOS18"
+- name: "i_scan_out_loopback[3]"
+  package_pin: "AG42" # FMC D12 (LA05_N)
+  iostandard: "LVCMOS18"
+
+# I2C SIGNALS
+- name: "o_i2c_rst_n"
+  package_pin: "AY42" # IIC_MUX_RESET_B_LS (reset for i2c bus mux) 
+  iostandard: "LVCMOS18"
+- name: "io_sda"
+  package_pin: "AU32" # IIC_SDA_MAIN_LS
+  iostandard: "LVCMOS18"
+- name: "io_scl"
+  package_pin: "AT35" # IIC_SCL_MAIN_LS
+  iostandard: "LVCMOS18"

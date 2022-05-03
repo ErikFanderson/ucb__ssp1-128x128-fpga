@@ -1,0 +1,163 @@
+implement.clock_groups:
+- name: "async_clks"
+  type: "asynchronous"
+  groups:
+  - ["sys_clk_p", "sys_clk_n", "sys_clk"]
+  - ["i2c_clk", "user_clk_p", "user_clk_n",  "user_clk", "scan_clk_p", "scan_clk_n", "scan_clk_p_gated", "scan_clk_p_gated"]
+
+# Any clock that is at the port level should be a primary clock! Port => top-level IO
+implement.primary_clocks:
+- name: "sys_clk_p"
+  object: "i_sys_clk_p"
+  type: "port"
+  period: 5.0
+- name: "sys_clk_n"
+  object: "i_sys_clk_n"
+  type: "port"
+  period: 5.0
+- name: "user_clk_p"
+  object: "i_user_clk_p"
+  type: "port"
+  period: 5.0
+- name: "user_clk_n"
+  object: "i_user_clk_n"
+  type: "port"
+  period: 5.0
+
+# Uses hierarchical search on pins and nets... Do not include
+# hierarchy! Hierarchichal search allows you to find pins in the 
+# hierarchy but you specify just a single instance name and the pin name!
+implement.generated_clocks:
+- name: "sys_clk"
+  object: "IBUFGDS_sys_clk_inst/O"
+  type: "pin"
+  source: "i_sys_clk_p"
+  source_type: "port"
+  divisor: 1
+- name: "i2c_clk"
+  object: "i2c_clk_div/o_out_clk"
+  type: "pin"
+  source: "IBUFGDS_sys_clk_inst/O"
+  source_type: "pin"
+  divisor: 800 
+- name: "user_clk"
+  object: "IBUFGDS_user_clk_inst/O"
+  type: "pin"
+  source: "i_user_clk_p"
+  source_type: "port"
+  divisor: 1
+- name: "scan_clk_p"
+  object: "sclk_gen_inst/o_scan_clk_p"
+  type: "pin"
+  source: "IBUFGDS_user_clk_inst/O"
+  source_type: "pin"
+  edges: [1, 3, 9] # Pos edge is 1, neg edge is 2
+  edge_shift: [0, 0, 0] # In ns
+- name: "scan_clk_n"
+  object: "sclk_gen_inst/o_scan_clk_n"
+  type: "pin"
+  source: "IBUFGDS_user_clk_inst/O"
+  source_type: "pin"
+  edges: [1, 3, 9] # Pos edge is 1, neg edge is 2
+  edge_shift: [10.0, 10.0, 10.0] # In ns
+- name: "scan_clk_p_gated"
+  object: "scan_cg_p/o_clk"
+  type: "pin"
+  source: "sclk_gen_inst/o_scan_clk_p"
+  source_type: "pin"
+  divisor: 1
+- name: "scan_clk_n_gated"
+  object: "scan_cg_n/o_clk"
+  type: "pin"
+  source: "sclk_gen_inst/o_scan_clk_n"
+  source_type: "pin"
+  divisor: 1
+
+implement.input_delay_constraints: []
+  #- port: "i_uart_*"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_update"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_reset"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_en_inst"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_in_inst*"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_out_address*"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_en_address*"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+  #- port: "i_scan_out_loopback*"
+  #  clock: "scan_clk_p"
+  #  clock_edge: "rise"
+  #  min_delay: 5.0
+  #  max_delay: 5.0
+
+implement.output_delay_constraints: []
+#- port: "o_scan_update"
+#  clock: "scan_clk_n"
+#  clock_edge: "rise"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_reset"
+#  clock: "scan_clk_p"
+#  clock_edge: "rise"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_en_inst"
+#  clock: "scan_clk_p"
+#  clock_edge: "fall"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_in_inst*"
+#  clock: "scan_clk_p"
+#  clock_edge: "fall"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_en_address"
+#  clock: "scan_clk_p"
+#  clock_edge: "fall"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_in_address"
+#  clock: "scan_clk_p"
+#  clock_edge: "fall"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_scan_in_loopback"
+#  clock: "scan_clk_p"
+#  clock_edge: "fall"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_uart_*"
+#  clock: "scan_clk_p"
+#  clock_edge: "rise"
+#  min_delay: 5.0
+#  max_delay: 5.0
+#- port: "o_led*"
+#  clock: "scan_clk_p"
+#  clock_edge: "rise"
+#  min_delay: 5.0
+#  max_delay: 5.0

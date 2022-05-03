@@ -1,0 +1,60 @@
+#------------------------------------------------------------------------------
+# Author: Erik Anderson
+# Email: erik.francis.anderson@gmail.com
+#------------------------------------------------------------------------------
+make.bsub.queue: "vlada"
+
+#------------------------------------------------------------------------------
+# List of directories containing tools
+#------------------------------------------------------------------------------
+tools:
+- "${internal.env.TOOLBOX_HOME}/toolbox/tools/jinja_tool/jinja_tool"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-buildfile-tools/make/make"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-xilinx-tools/toolbox_xilinx_tools/2020.2/implement/implement"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-xilinx-tools/toolbox_xilinx_tools/2020.2/upload/upload"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-xilinx-tools/toolbox_xilinx_tools/2020.2/ip/ip"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-cadence-tools/xcelium/1909/xrun"
+- "${internal.env.SSP1_FPGA_HOME}/toolbox-cadence-tools/xcelium/1909/simvision"
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# List of jobs
+#------------------------------------------------------------------------------
+jobs.build.tasks: [{tool: Make}]
+jobs.build.description: "Generates a Makefile w/ all jobs as targets"
+
+jobs.implement.description: "Implement design and generate bitstream for FPGA"
+jobs.implement.tasks:
+- tool: XilinxImplementTool
+  additional_configs: [src/yml/implement.yml, src/yml/ports_fmc1.yml, src/yml/constraints.yml]
+jobs.upload.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml]}]
+jobs.upload.description: "Upload design to FPGA"
+
+#jobs.ip.tasks: [{tool: IPTool, additional_configs: [src/yml/implement.yml, src/yml/ip.yml]}]
+#jobs.ip.description: "Generate IP blocks"
+
+jobs.sim.tasks: [{tool: Xcelium, additional_configs: [src/yml/sim.yml]}]
+jobs.sim.description: "Simulate fpga design w/ simple test"
+
+jobs.waves.tasks: [{tool: Simvision, additional_configs: [src/yml/sim.yml]}]
+jobs.waves.description: "Open simvision"
+
+#jobs.sim_led.tasks: [{tool: Xcelium, additional_configs: [src/yml/sim.yml, src/yml/sim_led.yml]}]
+#jobs.sim_led.description: "Simulate fpga design with led test"
+  
+make.targets:
+- name: clean
+  description: "Cleans directory"
+  outputs: []
+  dependencies: []
+  commands: ["rm -rf build *.jou *.log __pycache__"]
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# List of files and directories
+#------------------------------------------------------------------------------
+#files.example_file_0: "/path/to/example/file_0"
+#dirs.example_dir_0: "/path/to/example/dir_0/"
+#filelists.example_filelist_0: []
+#dirlists.example_dirlist_0: []
+#------------------------------------------------------------------------------

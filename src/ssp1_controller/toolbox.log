@@ -1,0 +1,9 @@
+[toolbox] [INFO] Loaded configuration file "toolbox.yml"
+[toolbox] [INFO] Starting task "XilinxUploadTool" of job "upload".
+[toolbox] [INFO] Additional configuration file "src/yml/upload.yml" successfully loaded.
+[toolbox] [INFO] Verified namespaces: upload, jinja
+[toolbox] [INFO] Running step "render_tcl"
+[toolbox] [INFO] Successfully rendered file "build/upload/03-11-2022-12-49-45/upload.tcl"
+[toolbox] [INFO] Running step "run_vivado"
+[toolbox] [INFO] Assumes "vivado" binary added to path
+[toolbox] [INFO] vivado -mode batch -source upload.tcl

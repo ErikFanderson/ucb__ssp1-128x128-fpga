@@ -1,0 +1,8 @@
+# IP Definitions
+ip.execute: true 
+ip.part: "${implement.part}" 
+ip.blocks.uart.vlnv: "xilinx.com:ip:axi_uartlite:2.0"
+ip.blocks.uart.properties: []
+#- {name: "test_prop0", value: "test_val0"}
+#- {name: "test_prop1", value: "test_val1"}
+#- {name: "test_prop2", value: "test_val2"}
