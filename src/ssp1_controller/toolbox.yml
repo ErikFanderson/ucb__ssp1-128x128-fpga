@@ -2,7 +2,7 @@
 # Author: Erik Anderson
 # Email: erik.francis.anderson@gmail.com
 #------------------------------------------------------------------------------
-make.bsub.queue: "vlada"
+#make.bsub.queue: "vlada"
 
 #------------------------------------------------------------------------------
 # List of directories containing tools
@@ -27,8 +27,12 @@ jobs.implement.description: "Implement design and generate bitstream for FPGA"
 jobs.implement.tasks:
 - tool: XilinxImplementTool
   additional_configs: [src/yml/implement.yml, src/yml/ports_fmc1.yml, src/yml/constraints.yml]
+
 jobs.upload.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml]}]
 jobs.upload.description: "Upload design to FPGA"
+
+jobs.upload-remote.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml, src/yml/upload_superswitch_pc.yml]}]
+jobs.upload-remote.description: "Upload design to FPGA"
 
 #jobs.ip.tasks: [{tool: IPTool, additional_configs: [src/yml/implement.yml, src/yml/ip.yml]}]
 #jobs.ip.description: "Generate IP blocks"
@@ -41,13 +45,18 @@ jobs.waves.description: "Open simvision"
 
 #jobs.sim_led.tasks: [{tool: Xcelium, additional_configs: [src/yml/sim.yml, src/yml/sim_led.yml]}]
 #jobs.sim_led.description: "Simulate fpga design with led test"
-  
+
 make.targets:
 - name: clean
   description: "Cleans directory"
   outputs: []
   dependencies: []
   commands: ["rm -rf build *.jou *.log __pycache__"]
+- name: hw_server
+  description: "Starts hardware server"
+  outputs: []
+  dependencies: []
+  commands: ["hw_server -d -s tcp::3121"]
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------

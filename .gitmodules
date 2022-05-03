@@ -13,3 +13,6 @@
 [submodule "equipment"]
 	path = equipment
 	url = git@github.com:ErikFanderson/equipment.git
+[submodule "toolbox-cadence-tools"]
+	path = toolbox-cadence-tools
+	url = git@github.com:ErikFanderson/toolbox-cadence-tools.git

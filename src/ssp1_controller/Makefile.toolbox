@@ -5,16 +5,14 @@ list:
 	@echo "#--------------------------------------------------------------------"
 	@echo "# Toolbox generated make targets"
 	@echo "#--------------------------------------------------------------------"
-	@echo "build             Generates a Makefile w/ all jobs as targets"
-	@echo "implement         Implement design and generate bitstream for FPGA"
-	@echo "upload            Upload design to FPGA"
-	@echo "sim               Simulate fpga design w/ simple test"
-	@echo "waves             Open simvision"
-	@echo "clean             Cleans directory"
-	@echo "implement-bsub    [bsub] Implement design and generate bitstream for FPGA"
-	@echo "upload-bsub       [bsub] Upload design to FPGA"
-	@echo "sim-bsub          [bsub] Simulate fpga design w/ simple test"
-	@echo "waves-bsub        [bsub] Open simvision"
+	@echo "build            Generates a Makefile w/ all jobs as targets"
+	@echo "implement        Implement design and generate bitstream for FPGA"
+	@echo "upload           Upload design to FPGA"
+	@echo "upload-remote    Upload design to FPGA"
+	@echo "sim              Simulate fpga design w/ simple test"
+	@echo "waves            Open simvision"
+	@echo "clean            Cleans directory"
+	@echo "hw_server        Starts hardware server"
 	@echo "#--------------------------------------------------------------------"
 .PHONY: list 
 #----------------------------------------------------------
@@ -44,6 +42,14 @@ upload:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
+# Target "upload-remote" 
+#----------------------------------------------------------
+upload-remote: 
+	toolbox-cli --color -l info -b build -o toolbox upload-remote	
+.PHONY: upload-remote
+#----------------------------------------------------------
+
+#----------------------------------------------------------
 # Target "sim" 
 #----------------------------------------------------------
 sim: 
@@ -68,34 +74,10 @@ clean:
 #----------------------------------------------------------
 
 #----------------------------------------------------------
-# BSUB Target "implement-bsub" 
+# Target "hw_server" 
 #----------------------------------------------------------
-implement-bsub: 
-	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox implement"
-.PHONY: implement-bsub
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# BSUB Target "upload-bsub" 
-#----------------------------------------------------------
-upload-bsub: 
-	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox upload"
-.PHONY: upload-bsub
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# BSUB Target "sim-bsub" 
-#----------------------------------------------------------
-sim-bsub: 
-	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox sim"
-.PHONY: sim-bsub
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# BSUB Target "waves-bsub" 
-#----------------------------------------------------------
-waves-bsub: 
-	bsub -q vlada "toolbox-cli --color -l info -b build -o toolbox waves"
-.PHONY: waves-bsub
+hw_server: 
+	hw_server -d -s tcp::3121	
+.PHONY: hw_server
 #----------------------------------------------------------
 
