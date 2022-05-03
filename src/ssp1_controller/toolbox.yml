@@ -31,7 +31,7 @@ jobs.implement.tasks:
 jobs.upload.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml]}]
 jobs.upload.description: "Upload design to FPGA"
 
-jobs.upload-remote.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml, src/yml/upload_superswitch_pc.yml]}]
+jobs.upload-remote.tasks: [{tool: XilinxUploadTool, additional_configs: [src/yml/upload.yml, src/yml/upload_remote.yml]}]
 jobs.upload-remote.description: "Upload design to FPGA"
 
 #jobs.ip.tasks: [{tool: IPTool, additional_configs: [src/yml/implement.yml, src/yml/ip.yml]}]

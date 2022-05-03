@@ -16,3 +16,6 @@
 [submodule "toolbox-cadence-tools"]
 	path = toolbox-cadence-tools
 	url = git@github.com:ErikFanderson/toolbox-cadence-tools.git
+[submodule "verilog-library"]
+	path = verilog-library
+	url = git@github.com:ErikFanderson/verilog-library.git
