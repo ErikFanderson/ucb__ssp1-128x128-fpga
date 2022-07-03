@@ -20,6 +20,7 @@ from equipment.keithley2230 import Keithley2230
 from equipment.keithley2400 import *
 
 class SuperSwitchUARTDriver(UARTDriver):
+    """This class is for reading and writing registers to the FPGA."""
 
     # Scan controller command mapping
     CMD_RST = "00"
@@ -44,7 +45,7 @@ class SuperSwitchUARTDriver(UARTDriver):
             return "0"
         else:
             return "1"
-
+:unread
     #---------------------------------------------------------------------------
     # Inst basic methods
     #---------------------------------------------------------------------------
@@ -102,11 +103,11 @@ class SuperSwitchUARTDriver(UARTDriver):
     # Address basic methods
     #---------------------------------------------------------------------------
 
-    def set_address(self, 
-                    chip_row: int, 
-                    chip_col: int, 
-                    en: int = None, 
-                    lb_sel: int = None, 
+    def set_address(self,
+                    chip_row: int,
+                    chip_col: int,
+                    en: int = None,
+                    lb_sel: int = None,
                     addr: int = None):
         """Sets address scan chain bits for specific chiplet.
 

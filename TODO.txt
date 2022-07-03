@@ -1,0 +1,12 @@
+1. New FPGA bit file
+    a). Add additional frame driver functionality into current verilog.
+    b). Re-evaluate asynchronous clock domains.
+    c). Re-simulate regular and frame driver operation.
+2. Verify new bit stream w/ python code
+3. Add documentation to repo for
+    a). Compiling bit stream
+    b). Uploading bit stream
+    c). Simulating verilog
+    d). Python class diagram
+    e). Equipment in use (optical and power driver)
+    f). Running python tests on actual hardware

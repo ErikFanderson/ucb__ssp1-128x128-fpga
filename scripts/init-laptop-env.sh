@@ -3,9 +3,9 @@
 # Set PYTHONPATH accordingly
 if [ -z "$PYTHONPATH" ]
 then
-    export PYTHONPATH=$PWD
+    export PYTHONPATH=$PWD:$PWD/src/ssp1_controller/src/python
 else
-    export PYTHONPATH=$PWD:$PYTHONPATH
+    export PYTHONPATH=$PWD:$PWD/src/ssp1_controller/src/python:$PYTHONPATH
 fi
 
 # Source other sourcemes

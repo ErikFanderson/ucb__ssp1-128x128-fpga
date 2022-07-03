@@ -1,4 +1,0 @@
-- Rewrite ssp1_controller/chip.py to have all updated methods (namely
-  initialize digital the same way in ssp1-wb-4x4)
-- Create ssp1_wb_4x4 directory
-- Test the enable, scan in 0, and update, for chip col 0 test points
